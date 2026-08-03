@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akash Dubey</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --border: #1e1e1e;
+    --text: #f0f0f0;
+    --muted: #888888;
+    --green: #4ade80;
+    --green-dim: #22c55e;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  /* MAIN */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* HERO */
+  #hero {
+    padding-top: 140px;
+    padding-bottom: 96px;
+  }
+
+  .hero-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: var(--green);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-heading {
+    font-size: clamp(48px, 8vw, 80px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--green-dim); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+
+  .btn-outline:hover { border-color: var(--green); color: var(--green); transform: translateY(-1px); }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .section-num {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .section-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ENTRY ROWS */
+  .entry {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .entry:last-child { border-bottom: none; }
+
+  .entry-date {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 3px;
+    white-space: nowrap;
+  }
+
+  .entry-content {}
+
+  .entry-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+
+  .entry-org {
+    font-size: 13px;
+    color: var(--green);
+  }
+
+  .entry-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+
+  /* ABOUT */
+  .about-text {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  .about-text strong {
+    color: var(--text);
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .contact-value {
+    font-size: 14px;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-value:hover { color: var(--green); }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-copy {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--green); }
+
+  /* MOBILE */
+  @media (max-width: 680px) {
+    nav { padding: 0 20px; }
+    main { padding: 0 20px; }
+    footer { padding: 24px 20px; }
+
+    .hero-heading { font-size: 42px; }
+    .nav-links { gap: 20px; }
+
+    .entry {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+
+    .entry-date { padding-top: 0; }
+
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">akash.dubey</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#currently">Experience</a></li>
+    <li><a href="#honors">Honors</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HERO -->
+  <section id="hero" style="border-top: none;">
+    <p class="hero-label">Akash Dubey &mdash; Mehta Scholar &middot; Harker &rsquo;27 &middot; Venture Analyst</p>
+    <h1 class="hero-heading">I seek to understand<br>markets &amp; people.</h1>
+    <p class="hero-sub">
+      Venture Analyst at G2C Ventures &amp; The Harker Endowment. Interested in economics,
+      finance, and what drives founders to build.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:27akashd@students.harker.org" class="btn-primary">
+        ✉ Get in touch
+      </a>
+      <a href="https://www.linkedin.com/in/akash--dubey-/" target="_blank" rel="noopener" class="btn-outline">
+        LinkedIn ↗
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header">
+      <span class="section-num">00</span>
+      <span class="section-title">About</span>
+      <span class="section-rule"></span>
+    </div>
+    <p class="about-text">
+      I&rsquo;m a rising senior at <strong>The Harker School</strong> in Palo Alto, CA, where I&rsquo;m
+      a <strong>Mehta Scholar</strong> and <strong>Venture Analyst for the Harker Endowment</strong>.
+      This past summer I joined <strong>G2C Ventures</strong> as an Analyst, working on deal sourcing,
+      due diligence, and investment memos.
+      <br><br>
+      Outside of finance, I co-lead speaker programming at <strong>Oeconomia</strong> &mdash;
+      Harker&rsquo;s economics club &mdash; and captain the <strong>Varsity Water Polo</strong> team.
+      I&rsquo;ve authored two economics papers, earning recognition from Harker&rsquo;s
+      Business &amp; Entrepreneurship department.
+    </p>
+  </section>
+
+  <!-- CURRENTLY / EXPERIENCE -->
+  <section id="currently">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Experience</span>
+      <span class="section-rule"></span>
+    </div>
+
+    <div class="entry">
+      <span class="entry-date">SUM 2026</span>
+      <div class="entry-content">
+        <p class="entry-title">Venture Analyst</p>
+        <p class="entry-org">G2C Ventures</p>
+        <p class="entry-desc">Deal sourcing, due diligence, investment memos, and AI automations across the portfolio.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="entry-date">2026</span>
+      <div class="entry-content">
+        <p class="entry-title">Head of Speaker Events</p>
+        <p class="entry-org">Oeconomia &mdash; The Harker School</p>
+        <p class="entry-desc">Curates and leads speaker programming for Harker&rsquo;s economics organization.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="entry-date">2025</span>
+      <div class="entry-content">
+        <p class="entry-title">Varsity Water Polo Captain</p>
+        <p class="entry-org">The Harker School</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="entry-date">2025</span>
+      <div class="entry-content">
+        <p class="entry-title">Mehta Scholar &amp; Venture Analyst</p>
+        <p class="entry-org">The Harker Endowment &mdash; Mehta Scholars Program</p>
+        <p class="entry-desc">Selected scholar in Harker&rsquo;s flagship entrepreneurship and endowment program.</p>
+      </div>
+    </div>
+
+    <a href="https://www.linkedin.com/in/akash--dubey-/" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:6px;margin-top:24px;font-size:14px;color:var(--green);text-decoration:none;">
+      Full experience ↗
+    </a>
+  </section>
+
+  <!-- HONORS -->
+  <section id="honors">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Honors &amp; Awards</span>
+      <span class="section-rule"></span>
+    </div>
+
+    <div class="entry">
+      <span class="entry-date">2026</span>
+      <div class="entry-content">
+        <p class="entry-title">Business &amp; Entrepreneurship Junior of the Year</p>
+        <p class="entry-org">The Harker School</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="entry-date">2025</span>
+      <div class="entry-content">
+        <p class="entry-title">Love of Learning Certificate</p>
+        <p class="entry-org">The Harker School</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="entry-date">2024</span>
+      <div class="entry-content">
+        <p class="entry-title">Mission of the School Award</p>
+        <p class="entry-org">The Harker School</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="entry-date">2023&ndash;27</span>
+      <div class="entry-content">
+        <p class="entry-title">Honor Roll</p>
+        <p class="entry-org">The Harker School</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Contact</span>
+      <span class="section-rule"></span>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <a href="mailto:27akashd@students.harker.org" class="contact-value">27akashd@students.harker.org</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <a href="tel:6504683560" class="contact-value">650-468-3560</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/akash--dubey-/" target="_blank" rel="noopener" class="contact-value">akash--dubey-</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Palo Alto, CA</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">&copy; 2026 &nbsp; Akash Dubey &nbsp;&middot;&nbsp; Palo Alto, CA</span>
+  <div class="footer-links">
+    <a href="mailto:27akashd@students.harker.org">Email</a>
+    <a href="https://www.linkedin.com/in/akash--dubey-/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://adubeyhawaii.wixstudio.com/akashdubey" target="_blank" rel="noopener">Wix Site</a>
+  </div>
+</footer>
+
+</body>
+</html>
