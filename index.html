@@ -236,6 +236,35 @@
     line-height: 1.6;
   }
 
+  /* Entries carrying an org logo get a third column for it */
+  .entry--logo { grid-template-columns: 120px 56px 1fr; }
+
+  .entry-logo {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #181818;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    flex: 0 0 auto;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .entry--logo:hover .entry-logo {
+    border-color: #333;
+    background: #1d1d1d;
+  }
+
+  .entry-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
   /* ABOUT */
   .about-text {
     font-size: 16px;
@@ -523,6 +552,23 @@
 
     .entry-date { padding-top: 0; }
 
+    /* logo pinned left, date + content stacked beside it */
+    .entry--logo {
+      grid-template-columns: 40px 1fr;
+      gap: 4px 14px;
+    }
+
+    .entry--logo .entry-logo {
+      width: 40px;
+      height: 40px;
+      padding: 6px;
+      grid-row: 1 / span 2;
+      grid-column: 1;
+    }
+
+    .entry--logo .entry-date,
+    .entry--logo .entry-content { grid-column: 2; }
+
     .contact-grid { grid-template-columns: 1fr 1fr; }
 
     .paper-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -595,8 +641,9 @@
       <span class="section-rule"></span>
     </div>
 
-    <div class="entry">
+    <div class="entry entry--logo">
       <span class="entry-date">SUM 2026</span>
+      <span class="entry-logo"><img src="logos/g2c.png" alt="G2C Venture Partners" loading="lazy"></span>
       <div class="entry-content">
         <p class="entry-title">Venture Analyst</p>
         <p class="entry-org">G2C Ventures</p>
@@ -604,8 +651,9 @@
       </div>
     </div>
 
-    <div class="entry">
+    <div class="entry entry--logo">
       <span class="entry-date">2026</span>
+      <span class="entry-logo"><img src="logos/oeconomia.png" alt="Oeconomia" loading="lazy"></span>
       <div class="entry-content">
         <p class="entry-title">Head of Speaker Events</p>
         <p class="entry-org">Oeconomia &mdash; The Harker School</p>
@@ -613,16 +661,18 @@
       </div>
     </div>
 
-    <div class="entry">
+    <div class="entry entry--logo">
       <span class="entry-date">2025</span>
+      <span class="entry-logo"><img src="logos/harker.png" alt="Harker Athletics" loading="lazy"></span>
       <div class="entry-content">
         <p class="entry-title">Varsity Water Polo Captain</p>
         <p class="entry-org">The Harker School</p>
       </div>
     </div>
 
-    <div class="entry">
+    <div class="entry entry--logo">
       <span class="entry-date">2025</span>
+      <span class="entry-logo"><img src="logos/mehta.png" alt="The Mehta Endowment" loading="lazy"></span>
       <div class="entry-content">
         <p class="entry-title">Mehta Scholar &amp; Venture Analyst</p>
         <p class="entry-org">The Harker Endowment &mdash; Mehta Scholars Program</p>
@@ -745,6 +795,7 @@
       <div class="entry-content">
         <p class="entry-title">Grand Concours Awards</p>
         <p class="entry-org">American Association of Teachers of French</p>
+        <p class="entry-desc">2025 Level 4 Gold Medal &middot; 2024 Level 3 Gold Medal &middot; 2023 Level 1 Platinum Plaque (perfect score)</p>
       </div>
     </div>
 
