@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing · Akash Dubey</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">akash.dubey</a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/experience/">Experience</a></li>
+    <li><a href="/writing/" class="is-active">Writing</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- PAGE HEAD -->
+  <header class="page-head">
+    <p class="page-eyebrow">Writing</p>
+    <h1 class="page-title">Notes on markets, prices, and what I&rsquo;m reading.</h1>
+    <p class="page-lede">
+      Economics papers and longer-form thinking &mdash; mostly about why the numbers and the
+      story disagree.
+    </p>
+  </header>
+
+  <!-- POSTS -->
+  <section style="border-top:none; padding-top:0;">
+
+    <article class="post">
+      <p class="post-date">2026</p>
+      <a class="post-title" href="/papers/stock-market-vs-real-life.pdf"
+         data-pdf="/papers/stock-market-vs-real-life.pdf"
+         data-title="The Stock Market and Real Life: Reality versus Expectations">
+        The Stock Market and Real Life: Reality versus Expectations
+      </a>
+      <p class="post-excerpt">
+        There are a lot of ways to bet on a price. This paper works through what actually moves
+        a stock &mdash; buy-and-hold, day trading, shorting &mdash; and then asks why recent price
+        action keeps diverging from the headlines: the S&amp;P rallying against the Iran energy
+        shock and weak labor data, and Meta sliding on an earnings beat.
+      </p>
+      <div class="post-foot">
+        <span class="post-tag">PDF</span>
+        <span>13 pages</span>
+        <span>Economics</span>
+      </div>
+    </article>
+
+    <article class="post">
+      <p class="post-date">2025</p>
+      <a class="post-title" href="/papers/berkeley-housing-market.pdf"
+         data-pdf="/papers/berkeley-housing-market.pdf"
+         data-title="The Rise of Berkeley&rsquo;s Housing Market">
+        The Rise of Berkeley&rsquo;s Housing Market: An Analysis of Local and Regional Factors
+      </a>
+      <p class="post-excerpt">
+        Why Berkeley home prices keep climbing when statewide numbers say otherwise. Zoning
+        approval that takes years, permitting and entitlement costs running up to 10% of a
+        project, and sustained high rates that push developers to sit on plans rather than build.
+      </p>
+      <div class="post-foot">
+        <span class="post-tag">PDF</span>
+        <span>6 pages</span>
+        <span>Economics</span>
+      </div>
+    </article>
+
+    <article class="post todo">
+      <p class="post-date">[Month Year]</p>
+      <span class="post-title">[Title of the next piece]</span>
+      <p class="post-excerpt">
+        [Two or three sentences on what it argues. Duplicate this block for each new piece,
+        or delete it if you don&rsquo;t need a placeholder.]
+      </p>
+      <div class="post-foot">
+        <span class="post-tag">[Tag]</span>
+        <span>[length]</span>
+        <span>[topic]</span>
+      </div>
+    </article>
+
+    <article class="post todo">
+      <p class="post-date">[Month Year]</p>
+      <span class="post-title">[Title of another piece]</span>
+      <p class="post-excerpt">
+        [Two or three sentences on what it argues.]
+      </p>
+      <div class="post-foot">
+        <span class="post-tag">[Tag]</span>
+        <span>[length]</span>
+        <span>[topic]</span>
+      </div>
+    </article>
+
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">&copy; 2026 &nbsp; Akash Dubey &nbsp;&middot;&nbsp; Palo Alto, CA</span>
+  <div class="footer-links">
+    <a href="mailto:adubeyhawaii@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/akash--dubey-/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</footer>
+
+<!-- PDF VIEWER -->
+<div class="pdf-modal" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+  <div class="pdf-bar">
+    <span class="pdf-bar-title" id="pdfModalTitle"></span>
+    <div class="pdf-bar-actions">
+      <a class="pdf-bar-link" id="pdfDownload" href="#" target="_blank" rel="noopener">Open in new tab ↗</a>
+      <button class="pdf-close" id="pdfClose" aria-label="Close paper">&times;</button>
+    </div>
+  </div>
+  <div class="pdf-stage">
+    <iframe class="pdf-frame" id="pdfFrame" title="Paper viewer"></iframe>
+  </div>
+</div>
+
+<script src="/app.js"></script>
+
+</body>
+</html>
