@@ -777,7 +777,7 @@
   box-shadow: none;
 }
 
-/* branch line: from the spine out to the dot */
+/* branch line: from the spine out to the dot, same grey as the dot */
 .role--sub::after {
   content: '';
   position: absolute;
@@ -785,7 +785,7 @@
   top: 11px;
   width: 52px;
   height: 1px;
-  background: var(--border);
+  background: #4a4a4a;
 }
 
 .role-head {
