@@ -746,7 +746,7 @@
 
 .role:last-child { padding-bottom: 0; }
 
-/* dot */
+/* dot — green on every top-level role */
 .role::before {
   content: '';
   position: absolute;
@@ -755,13 +755,8 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid #3a3a3a;
-}
-
-.role--current::before {
   background: var(--green);
-  border-color: var(--green);
+  border: 2px solid var(--green);
   box-shadow: 0 0 0 4px rgba(74,222,128,0.12);
 }
 
@@ -771,8 +766,9 @@
   padding-bottom: 34px;
 }
 
+/* grey dot at the end of the branch, not on the spine */
 .role--sub::before {
-  left: -76px;
+  left: -23px;
   top: 8px;
   width: 7px;
   height: 7px;
@@ -781,12 +777,13 @@
   box-shadow: none;
 }
 
+/* branch line: from the spine out to the dot */
 .role--sub::after {
   content: '';
   position: absolute;
-  left: -69px;
+  left: -71px;
   top: 11px;
-  width: 30px;
+  width: 52px;
   height: 1px;
   background: var(--border);
 }
@@ -915,8 +912,8 @@ a.post-title:hover { color: var(--green); }
   .role::before { left: -24px; }
 
   .role--sub { margin-left: 20px; }
-  .role--sub::before { left: -44px; }
-  .role--sub::after { left: -37px; width: 14px; }
+  .role--sub::before { left: -15px; }
+  .role--sub::after { left: -40px; width: 28px; }
 
   .stat-row { gap: 16px; }
   .post-title { font-size: 19px; }
