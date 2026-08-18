@@ -91,7 +91,7 @@
 
   .hero-label {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 12px;
+    font-size: 20px;
     color: var(--green);
     letter-spacing: 0.12em;
     text-transform: uppercase;
